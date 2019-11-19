@@ -30,9 +30,11 @@ def result():
       compurl = request.form['Base_Link']
       Years = int(request.form['Years'])
       NBShares = int(request.form['Number_Shares'])
-      RealDiscountRate = request.form['RealDiscountRate']
+      RealDiscountRate = float(request.form['RealDiscountRate'])
       AverageInflation = float(request.form['AverageInflation'])
-      NominalDiscountRate = float(request.form['NominalDiscountRate'])
+      NominalDiscountRate = float(RealDiscountRate + AverageInflation)
+      strNominalDiscountRate = str("Nominal Discount Rate is {}%".format(NominalDiscountRate))
+      print(strNominalDiscountRate)
 
       url1 = compurl + 'financial-statements'
       url2 = compurl + 'balance-sheet'
@@ -92,12 +94,12 @@ def result():
               EPSGrowth5 = "%.2f" % round(
                   (100 * (float(listofEPS[x - 4]) - float(listofEPS[x])) / float(listofEPS[x])),
                   2)
-              EPS5yGrowth = str(" 5 Years Growth Rate {}%".format(EPSGrowth5))
+              EPS5yGrowth = str(" 5 Years EPS Growth Rate {}%".format(EPSGrowth5))
           if x == 9:
               EPSGrowth10 = "%.2f" % round(
                   (100 * (float(listofEPS[x - 9]) - float(listofEPS[x])) / float(listofEPS[x])),
                   2)
-              EPS10yGrowth = str(" 10 Years Growth Rate {}%".format(EPSGrowth10))
+              EPS10yGrowth = str(" 10 Years EPS Growth Rate {}%".format(EPSGrowth10))
       EPSGrowthList = str("List of EPS growth rates {}".format(listofEPSGrowth))
 
       # Balance Sheet
@@ -254,7 +256,7 @@ def result():
       OVERPRICED0 = str("Overpriced {}%".format(Overpriced))
 
       # Overpriced + Cash
-      r = ['{}'.format(NetIncome10yGrowth), '{}'.format(NetIncomeGrowthList), '{}'.format(lastEPSstr),
+      r = ['{}'.format(strNominalDiscountRate), '{}'.format(NetIncome5yGrowth), '{}'.format(NetIncome10yGrowth), '{}'.format(NetIncomeGrowthList), '{}'.format(lastEPSstr),
           '{}'.format(EPS), '{}'.format(EPS5yGrowth), '{}'.format(EPS10yGrowth),
            '{}'.format(EPSGrowthList), '{}'.format(CurrentLiabilities0), '{}'.format(CurrentCash0),
            '{}'.format(CurrentLiabilitiesCash_Factor0),
