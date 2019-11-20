@@ -271,7 +271,7 @@ def result():
       # '\n'.join('{}'.format(item) for item in r)
       #z = str(r).split(',')
       #r = [('aaaa', NetIncome10yGrowth), ('Years', '5')]
-      return render_template("result.html", result = r, labels = cellsyears, datasets = pricecells )
+      return render_template("result.html", result = r, labels = cellsyears, values = pricecells )
 
 if __name__ == '__main__':
    app.run(debug = True)
