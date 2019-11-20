@@ -236,8 +236,12 @@ def result():
               cells.append(b)
       Price5Years = float(cells[36])
       Price5YearsList = str("Prices list {}".format(cells))
+      #cellsyears = list(cells[i] for i in [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140])
+      cellsyears = [int(i) for i in cells[0::7]]
+      pricecells = [float(i) for i in cells[1::7]]
+      print(cellsyears)
+      print(pricecells)
 
-      # NPV
       RetainedErnings = []
       for i in range(0, Years):
           a = NBShares * (float(listofEPS[i]) - float(listDividends[i]))
@@ -262,12 +266,12 @@ def result():
            '{}'.format(CurrentLiabilitiesCash_Factor0),
            '{}'.format(PE), '{}'.format(RORE10), '{}'.format(RORE20), '{}'.format(RORE30), '{}'.format(RORE40),
            '{}'.format(RORE50),
-           '{}'.format(PriceNow0), '{}'.format(Price5YearsList), '{}'.format(NETPRESENT), '{}'.format(TOTALVALUE),
+           '{}'.format(PriceNow0), '{}'.format(cellsyears),  '{}'.format(pricecells), '{}'.format(NETPRESENT), '{}'.format(TOTALVALUE),
            '{}'.format(PE), '{}'.format(OVERPRICED0)]
       # '\n'.join('{}'.format(item) for item in r)
       #z = str(r).split(',')
       #r = [('aaaa', NetIncome10yGrowth), ('Years', '5')]
-      return render_template("result.html",result = r)
+      return render_template("result.html", result = r, labels = cellsyears, datasets = pricecells )
 
 if __name__ == '__main__':
    app.run(debug = True)
