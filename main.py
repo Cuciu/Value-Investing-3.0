@@ -34,7 +34,6 @@ def result():
       AverageInflation = float(request.form['AverageInflation'])
       NominalDiscountRate = float(RealDiscountRate + AverageInflation)
       strNominalDiscountRate = str("Nominal Discount Rate is {}%".format(NominalDiscountRate))
-      print(strNominalDiscountRate)
 
       url1 = compurl + 'financial-statements'
       url2 = compurl + 'balance-sheet'
@@ -239,8 +238,6 @@ def result():
       #cellsyears = list(cells[i] for i in [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140])
       cellsyears = [int(i) for i in cells[0::7]]
       pricecells = [float(i) for i in cells[1::7]]
-      print(cellsyears)
-      print(pricecells)
 
       RetainedErnings = []
       for i in range(0, Years):
@@ -271,7 +268,10 @@ def result():
       # '\n'.join('{}'.format(item) for item in r)
       #z = str(r).split(',')
       #r = [('aaaa', NetIncome10yGrowth), ('Years', '5')]
-      return render_template("result.html", result = r, labels = cellsyears, values = pricecells )
+      graphdata = [['Year','Average Price']]
+      for x,y in zip(cellsyears,pricecells):
+        graphdata.append([x,y])
+      return render_template("result.html", result=r, graphdata=graphdata, labels=cellsyears, values=pricecells)
 
 if __name__ == '__main__':
    app.run(debug = True)
