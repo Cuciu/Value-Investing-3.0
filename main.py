@@ -40,6 +40,9 @@ def result():
       url3 = compurl + 'pe-ratio'
       url4 = compurl + 'cash-flow-statement'
       url5 = compurl + 'stock-price-history'
+      url6 = compurl + 'roe'
+      url7 = compurl + 'roa'
+      url8 = compurl + 'roi'
 
       # Financial-Statements
       # NET INCOME
@@ -212,6 +215,57 @@ def result():
       RORE40 = str("RORE for 4 years ago is {}%".format(RORE4))
       RORE50 = str("RORE for 5 years ago is {}%".format(RORE5))
 
+      #ROE
+      soup = BeautifulSoup(URLHandler(url6), 'html.parser')
+      stable = soup.find('table')
+      header = stable.findAll('th')
+      headers = [th.text for th in header]
+      cells = []
+      rows = stable.findAll('tr')
+      for tr in rows:
+          # Process the body of the table
+          td = tr.findAll('td')
+          for t in td:
+              a = re.findall('>(.*)<', str(t))
+              b = a[0]
+              cells.append(b)
+      roecells = [i for i in cells[3::4]]
+      ROE = str("ROE quarterly was {}%".format(roecells))
+
+      #ROA
+      soup = BeautifulSoup(URLHandler(url7), 'html.parser')
+      stable = soup.find('table')
+      header = stable.findAll('th')
+      headers = [th.text for th in header]
+      cells = []
+      rows = stable.findAll('tr')
+      for tr in rows:
+          # Process the body of the table
+          td = tr.findAll('td')
+          for t in td:
+              a = re.findall('>(.*)<', str(t))
+              b = a[0]
+              cells.append(b)
+      roacells = [i for i in cells[3::4]]
+      ROA = str("ROA quarterly was {}%".format(roacells))
+
+      #ROI
+      soup = BeautifulSoup(URLHandler(url8), 'html.parser')
+      stable = soup.find('table')
+      header = stable.findAll('th')
+      headers = [th.text for th in header]
+      cells = []
+      rows = stable.findAll('tr')
+      for tr in rows:
+          # Process the body of the table
+          td = tr.findAll('td')
+          for t in td:
+              a = re.findall('>(.*)<', str(t))
+              b = a[0]
+              cells.append(b)
+      roicells = [i for i in cells[3::4]]
+      ROI = str("ROI quarterly was {}%".format(roicells))
+
       # Overpriced
       StringPrice0 = re.findall('content=(.*)&lt;/strong&gt', URLHandler(url5))
       StringPrice = StringPrice0[1].replace('&lt;strong&gt;', '')
@@ -234,8 +288,6 @@ def result():
               b = a[0]
               cells.append(b)
       Price5Years = float(cells[36])
-      Price5YearsList = str("Prices list {}".format(cells))
-      #cellsyears = list(cells[i] for i in [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140])
       cellsyears = [int(i) for i in cells[0::7]]
       pricecells = [float(i) for i in cells[1::7]]
 
@@ -262,12 +314,11 @@ def result():
            '{}'.format(EPSGrowthList), '{}'.format(CurrentLiabilities0), '{}'.format(CurrentCash0),
            '{}'.format(CurrentLiabilitiesCash_Factor0),
            '{}'.format(PE), '{}'.format(RORE10), '{}'.format(RORE20), '{}'.format(RORE30), '{}'.format(RORE40),
-           '{}'.format(RORE50),
+           '{}'.format(RORE50), '{}'.format(ROE), '{}'.format(ROA), '{}'.format(ROI),
            '{}'.format(PriceNow0), '{}'.format(cellsyears),  '{}'.format(pricecells), '{}'.format(NETPRESENT), '{}'.format(TOTALVALUE),
            '{}'.format(PE), '{}'.format(OVERPRICED0)]
-      # '\n'.join('{}'.format(item) for item in r)
-      #z = str(r).split(',')
-      #r = [('aaaa', NetIncome10yGrowth), ('Years', '5')]
+
+      #graph
       graphdata = [['Year','Average Price']]
       for x,y in zip(cellsyears,pricecells):
         graphdata.append([x,y])
