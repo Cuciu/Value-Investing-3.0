@@ -116,7 +116,9 @@ def result():
           var = b1[i]
           c1 = list(var.split(":"))
           e1, f1 = [c1[j] for j in (0, 1)]
-          listCurrentLiabilities.append(f"{round(float(f1), 2):.2f}")
+          print(f1)
+          #listCurrentLiabilities.append(f"{round(float(f1), 2):.2f}")
+          listCurrentLiabilities.append(f1)
       lastCurrentLiabilities = str(listCurrentLiabilities[0])
       CurrentLiabilities0 = str("current Liabilities {} ".format(lastCurrentLiabilities))
 
@@ -130,7 +132,8 @@ def result():
           var = b1[i]
           c1 = list(var.split(":"))
           e1, f1 = [c1[j] for j in (0, 1)]
-          listCurrentCash.append(f"{round(float(f1), 2):.2f}")
+          #listCurrentCash.append(f"{round(float(f1), 2):.2f}")
+          listCurrentCash.append(f1)
       lastCurrentCash = str(listCurrentCash[0])
       CurrentCash0 = str("current Cash {} ".format(lastCurrentCash))
 
@@ -265,6 +268,7 @@ def result():
               cells.append(b)
       roicells = [i for i in cells[3::4]]
       ROI = str("ROI quarterly was {}%".format(roicells))
+      print(ROI)
 
       # Overpriced
       StringPrice0 = re.findall('content=(.*)&lt;/strong&gt', URLHandler(url5))
@@ -311,8 +315,8 @@ def result():
       # Overpriced + Cash
       r = ['{}'.format(strNominalDiscountRate), '{}'.format(NetIncome5yGrowth), '{}'.format(NetIncome10yGrowth), '{}'.format(NetIncomeGrowthList), '{}'.format(lastEPSstr),
           '{}'.format(EPS), '{}'.format(EPS5yGrowth), '{}'.format(EPS10yGrowth),
-           '{}'.format(EPSGrowthList), '{}'.format(CurrentLiabilities0), '{}'.format(CurrentCash0),
-           '{}'.format(CurrentLiabilitiesCash_Factor0),
+           '{}'.format(EPSGrowthList), '{}'.format(CurrentLiabilities0),  '{}'.format(CurrentCash0),
+           '{}'.format(CurrentLiabilitiesCash_Factor0), '{}'.format(AllLiabilitiesAssets_Factor0),
            '{}'.format(PE), '{}'.format(RORE10), '{}'.format(RORE20), '{}'.format(RORE30), '{}'.format(RORE40),
            '{}'.format(RORE50), '{}'.format(ROE), '{}'.format(ROA), '{}'.format(ROI),
            '{}'.format(PriceNow0), '{}'.format(cellsyears),  '{}'.format(pricecells), '{}'.format(NETPRESENT), '{}'.format(TOTALVALUE),
