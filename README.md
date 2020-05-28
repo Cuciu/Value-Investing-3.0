@@ -3,6 +3,36 @@
 Through this app you  will be able to apply some of the basic Value Investing formulas for most of the companies listed on https://www.macrotrends.net/
 You can run it on your PC by installing Python 3.8 and the dependencies or simply deploy it as an app on Google App Engine on GCP.
 
+# It Calculates:
+* 5 Years Net Income Growth Rate 
+* 10 Years Net Income Growth Rate 
+* 5 Years EPS Growth Rate 
+* 10 Years EPS Growth Rate 
+* Current Liabilities / Current Cash Factor 
+* Total Liabilities / Total Assets Factor 
+* RORE for last 5 years
+* Overpriced percentage
+
+# Explaining the Current Liabilities / Current Cash Factor:
+How much Current Liabilities represent from the Current Cash in percentage
+Inspired by One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild
+
+# Explaining the Total Liabilities / Total Assets Factor
+How much Total Liabilities represent from the Total Assets Factor
+Inspired by One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild
+
+
+# Explaining the Overpriced formula:
+This formula was developed by myself in order to asses if the current price is corelated with the earnings of the company in the last five years.
+Components:
+* <Price5Years> - Price 5 years ago
+* <Investment> = <NBShares> * <Price5Years>
+* <RetainedErnings> = List of Retained earnings for the past 5 years
+* <NetPresentValue> is the NPV of Earnings calculated 5 years ago if all the estimated earnings and the estimating earnings were correct
+* <TotalValueYears> (estimated value gained in the 5 years) = Future Value (-<AverageInflation>, <NbofYears>, 0, -<NetPresentValue>) + * Future Value (-<AverageInflation>, <NbofYears>, 0, -<Investment>)
+* <EstimatedPrice> = <TotalValueYear>s / <NBShares>
+* Overpriced = (<PriceNow> / <EstimatedPrice>) %
+
 ## Example of input:
 * Base Link: https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/
 * Years: 5
@@ -41,23 +71,5 @@ You can run it on your PC by installing Python 3.8 and the dependencies or simpl
 * P/E Ratio as of May 27, 2020 is 28.69
 * Overpriced 92.78%
 
-# Explaining the Current Liabilities / Current Cash Factor:
-How much Current Liabilities represent from the Current Cash in percentage
-Inspired by One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild
-
-# Explaining the Total Liabilities / Total Assets Factor
-How much Total Liabilities represent from the Total Assets Factor
-Inspired by One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild
-
-
-# Explaining the Overpriced formula:
-This formula was developed by myself in order to asses if the current price is corelated with the earnings of the company in the last five years.
-* Components:
-<Price5Years> - Price 5 years ago
-<Investment> = <NBShares> * <Price5Years>
-<RetainedErnings> = List of Retained earnings for the past 5 years
-<NetPresentValue> is the NPV of Earnings calculated 5 years ago if all the estimated earnings and the estimating earnings were correct
-<TotalValueYears> (estimated value gained in the 5 years) = Future Value (-<AverageInflation>, <NbofYears>, 0, -<NetPresentValue>) + Future Value (-<AverageInflation>, <NbofYears>, 0, -<Investment>)
-<EstimatedPrice> = <TotalValueYear>s / <NBShares>
-Overpriced = (<PriceNow> / <EstimatedPrice>) %
+**Disclamer: Past performance is not necessarily indicative of future results. All investments carry risk and all investment decisions of an individual remain the responsibility of that individual. There is no guarantee that systems, indicators, or signals will result in profits or that they will not result in losses. All investors are advised to fully understand all risks associated with any kind of investing they choose to do.**
   
