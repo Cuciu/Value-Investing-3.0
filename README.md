@@ -14,12 +14,12 @@ You can run it on your PC by installing Python 3.8 and the dependencies or simpl
 * Overpriced percentage
 
 # Explaining the Current Liabilities / Current Cash Factor:
-How much _Current Liabilities_ represent from the _Current Cash_
-Inspired by _One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild_
+* How much _Current Liabilities_ represent from the _Current Cash_
+* Inspired by _One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild_
 
 # Explaining the Total Liabilities / Total Assets Factor
-How much _Total Liabilities_ represent from the _Total Assets_
-Inspired by _One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild_
+* How much _Total Liabilities_ represent from the _Total Assets_
+* Inspired by _One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild_
 
 
 # Explaining the Overpriced formula:
