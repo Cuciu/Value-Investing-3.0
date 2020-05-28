@@ -14,24 +14,24 @@ You can run it on your PC by installing Python 3.8 and the dependencies or simpl
 * Overpriced percentage
 
 # Explaining the Current Liabilities / Current Cash Factor:
-How much Current Liabilities represent from the Current Cash in percentage
-Inspired by One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild
+How much _Current Liabilities_ represent from the _Current Cash_
+Inspired by _One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild_
 
 # Explaining the Total Liabilities / Total Assets Factor
-How much Total Liabilities represent from the Total Assets Factor
-Inspired by One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild
+How much _Total Liabilities_ represent from the _Total Assets_
+Inspired by _One Up On Wall Street: How to Use What You Already Know to Make Money in the Market by Peter Lynch, John Rothchild_
 
 
 # Explaining the Overpriced formula:
 This formula was developed by myself in order to asses if the current price is corelated with the earnings of the company in the last five years.
 Components:
-* <Price5Years> - Price 5 years ago
-* <Investment> = <NBShares> * <Price5Years>
-* <RetainedErnings> = List of Retained earnings for the past 5 years
-* <NetPresentValue> is the NPV of Earnings calculated 5 years ago if all the estimated earnings and the estimating earnings were correct
-* <TotalValueYears> (estimated value gained in the 5 years) = Future Value (-<AverageInflation>, <NbofYears>, 0, -<NetPresentValue>) + * Future Value (-<AverageInflation>, <NbofYears>, 0, -<Investment>)
-* <EstimatedPrice> = <TotalValueYear>s / <NBShares>
-* Overpriced = (<PriceNow> / <EstimatedPrice>) %
+* _Price5Years_ - Price 5 years ago
+* _Investment_ = _NBShares_ * _Price5Years_
+* _RetainedErnings_ = List of Retained earnings for the past 5 years
+* _NetPresentValue_ is the NPV of Earnings calculated 5 years ago if all the estimated earnings and the estimating earnings were correct
+* _TotalValueYears_ (estimated value gained in the 5 years) = Future Value (-_AverageInflation_, _NbofYears_, 0, -_NetPresentValue_) + * Future Value (-_AverageInflation_, _NbofYears_, 0, -_Investment_)
+* _EstimatedPrice_ = _TotalValueYear_s / _NBShares_
+* _Overpriced_ = (_PriceNow_ / _EstimatedPrice_) %
 
 ## Example of input:
 * Base Link: https://www.macrotrends.net/stocks/charts/GOOGL/alphabet/
