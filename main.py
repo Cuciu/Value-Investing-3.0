@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from bs4 import BeautifulSoup
+from time import sleep
 import requests
 import re
 import numpy as np
@@ -16,6 +17,7 @@ def URLHandler(url0):
     html_string = BeautifulSoup(res.content, 'html.parser')
     html_string = str(html_string)
     return html_string
+    sleep(1)
 
 app = Flask(__name__)
 
@@ -47,6 +49,7 @@ def result():
       # Financial-Statements
       # NET INCOME
       StringNetIncome0 = re.search('Net Income(.*)EBITDA', URLHandler(url1))
+      print(StringNetIncome0)
       StringNetIncome = re.search('div>",(.*)},{"', StringNetIncome0.group(1))
       NetIncome = str(StringNetIncome.group(1).replace('"', ''))
       a = NetIncome.count(':')
@@ -116,13 +119,13 @@ def result():
           var = b1[i]
           c1 = list(var.split(":"))
           e1, f1 = [c1[j] for j in (0, 1)]
-          print(f1)
           #listCurrentLiabilities.append(f"{round(float(f1), 2):.2f}")
           listCurrentLiabilities.append(f1)
       lastCurrentLiabilities = str(listCurrentLiabilities[0])
       CurrentLiabilities0 = str("current Liabilities {} ".format(lastCurrentLiabilities))
-
-      StringCurrentCash0 = re.search('cash-on-hand(.*)Notes And Loans Receivable', URLHandler(url2))
+     
+      StringCurrentCash0 = re.search('cash-on-hand(.*)receivables-total', URLHandler(url2))
+      print(StringCurrentCash0)
       StringCurrentCash = re.search('div>",(.*)},{', StringCurrentCash0.group(0))
       CurrentCash = str(StringCurrentCash.group(1).replace('"', ''))
       a1 = CurrentCash.count(':')
